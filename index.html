@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HappyDoudou — Assistant TikTok</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --rose: #E8A0B0;
+    --rose-pale: #F5D6DE;
+    --rose-deep: #C4607A;
+    --beige: #FAF6F1;
+    --beige-warm: #F0E8E0;
+    --brun: #5C3D2E;
+    --brun-light: #8B6355;
+    --text: #2C1810;
+    --text-soft: #7A5C52;
+    --white: #FFFFFF;
+    --success: #7BAE8A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--beige);
+    color: var(--text);
+    min-height: 100vh;
+    max-width: 430px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--brun);
+    padding: 20px 20px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--rose-pale);
+    letter-spacing: 0.02em;
+  }
+
+  .logo span {
+    color: var(--rose);
+  }
+
+  .badge {
+    margin-left: auto;
+    background: var(--rose);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    gap: 6px;
+  }
+
+  .nav-btn {
+    flex: 1;
+    background: transparent;
+    border: 1.5px solid rgba(232,160,176,0.3);
+    color: rgba(245,214,222,0.7);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 7px 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+
+  .nav-btn.active {
+    background: var(--rose);
+    border-color: var(--rose);
+    color: var(--white);
+  }
+
+  /* SECTIONS */
+  .section { display: none; padding: 20px 16px 40px; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(92,61,46,0.06);
+  }
+
+  .card-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--brun);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .card-sub {
+    font-size: 12px;
+    color: var(--text-soft);
+    font-weight: 400;
+  }
+
+  /* SEMAINE HEADER */
+  .week-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0 10px;
+  }
+
+  .week-pill {
+    background: var(--brun);
+    color: var(--rose-pale);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .week-theme {
+    font-size: 12px;
+    color: var(--text-soft);
+    font-style: italic;
+  }
+
+  /* VIDEO CARD */
+  .video-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(92,61,46,0.05);
+    border-left: 3px solid var(--rose);
+  }
+
+  .video-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .video-day {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--rose-deep);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .video-format {
+    font-size: 10px;
+    background: var(--beige-warm);
+    color: var(--brun-light);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .video-duration {
+    font-size: 10px;
+    color: var(--text-soft);
+    margin-left: auto;
+  }
+
+  .video-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--brun);
+    line-height: 1.4;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .video-clip {
+    font-size: 12px;
+    color: var(--text-soft);
+    background: var(--beige);
+    padding: 8px 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .video-clip::before {
+    content: "🎬";
+    font-size: 13px;
+  }
+
+  /* COPY BUTTON */
+  .copy-btn {
+    width: 100%;
+    margin-top: 10px;
+    background: var(--beige-warm);
+    border: none;
+    color: var(--brun);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 9px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .copy-btn:active { background: var(--rose-pale); }
+  .copy-btn.copied { background: var(--success); color: white; }
+
+  /* RÉPONSES */
+  .reponse-category {
+    margin-bottom: 20px;
+  }
+
+  .category-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brun-light);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--beige-warm);
+  }
+
+  .reponse-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 6px rgba(92,61,46,0.05);
+  }
+
+  .reponse-trigger {
+    font-size: 11px;
+    color: var(--rose-deep);
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+
+  .reponse-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* IDENTITÉ */
+  .identity-block {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(92,61,46,0.06);
+  }
+
+  .identity-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--brun);
+    margin-bottom: 12px;
+  }
+
+  .rule-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--beige);
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .rule-item:last-child { border-bottom: none; }
+
+  .rule-icon {
+    font-size: 15px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .rule-no {
+    color: var(--rose-deep);
+    font-weight: 700;
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* TODAY BANNER */
+  .today-banner {
+    background: linear-gradient(135deg, var(--rose-deep), var(--brun));
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: white;
+  }
+
+  .today-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 6px;
+  }
+
+  .today-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 19px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .today-detail {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-bottom: 14px;
+  }
+
+  .today-copy {
+    background: rgba(255,255,255,0.2);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 9px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+  }
+
+  .today-copy:active { background: rgba(255,255,255,0.35); }
+  .today-copy.copied { background: var(--success); border-color: var(--success); }
+
+  /* STATS REMINDER */
+  .stats-box {
+    background: var(--beige-warm);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .stats-icon { font-size: 22px; }
+
+  .stats-text {
+    font-size: 12px;
+    color: var(--brun-light);
+    line-height: 1.5;
+  }
+
+  .stats-text strong {
+    color: var(--brun);
+    font-weight: 600;
+  }
+
+  /* PROGRESS */
+  .progress-section {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(92,61,46,0.05);
+  }
+
+  .progress-label {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-bottom: 8px;
+  }
+
+  .progress-bar-bg {
+    background: var(--beige-warm);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    background: linear-gradient(90deg, var(--rose), var(--rose-deep));
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.8s ease;
+  }
+
+  .progress-numbers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 11px;
+  }
+
+  .progress-current { color: var(--rose-deep); font-weight: 700; }
+  .progress-goal { color: var(--text-soft); }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--brun);
+    margin-bottom: 4px;
+  }
+
+  .section-sub {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="logo">Happy<span>Doudou</span></div>
+    <div class="badge">🐻 TikTok</div>
+  </div>
+  <div class="nav">
+    <button class="nav-btn active" onclick="showSection('aujourd-hui')">Aujourd'hui</button>
+    <button class="nav-btn" onclick="showSection('calendrier')">Calendrier</button>
+    <button class="nav-btn" onclick="showSection('reponses')">Réponses</button>
+    <button class="nav-btn" onclick="showSection('identite')">Identité</button>
+  </div>
+</div>
+
+<!-- AUJOURD'HUI -->
+<div class="section active" id="aujourd-hui">
+
+  <div style="margin-bottom:16px; margin-top:4px;">
+    <div class="section-title">Bonne chance 🎯</div>
+    <div class="section-sub">Ta vidéo du jour et tes indicateurs</div>
+  </div>
+
+  <div class="progress-section">
+    <div class="progress-label">Progression vers 10 000 abonnés</div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" style="width: 90%"></div>
+    </div>
+    <div class="progress-numbers">
+      <span class="progress-current">~9 000 abonnés</span>
+      <span class="progress-goal">Objectif : 10 000</span>
+    </div>
+  </div>
+
+  <div class="today-banner">
+    <div class="today-label">📹 Vidéo du jour — Semaine 1</div>
+    <div class="today-text">"T'as pas besoin d'expliquer pourquoi ton doudou te manque."</div>
+    <div class="today-detail">🎬 Clip stock doudous · Texte à l'écran · 10-12 sec · Aucune mention du service</div>
+    <button class="today-copy" onclick="copyText(this, 'T\'as pas besoin d\'expliquer pourquoi ton doudou te manque.')">Copier le texte</button>
+  </div>
+
+  <div class="stats-box">
+    <div class="stats-icon">📊</div>
+    <div class="stats-text"><strong>Ton vrai indicateur :</strong> le taux de complétion. Pas les vues. Si les gens regardent jusqu'au bout, TikTok pousse.</div>
+  </div>
+
+  <div class="stats-box">
+    <div class="stats-icon">💬</div>
+    <div class="stats-text"><strong>Réponds à chaque commentaire</strong> qui demande de l'aide. Ce sont des clients directs. Réponds vite.</div>
+  </div>
+
+  <div class="stats-box">
+    <div class="stats-icon">🚫</div>
+    <div class="stats-text"><strong>Règle d'or du mois :</strong> zéro mention du service en vidéo. Les demandes arrivent en commentaire.</div>
+  </div>
+
+</div>
+
+<!-- CALENDRIER -->
+<div class="section" id="calendrier">
+
+  <div style="margin-bottom:4px; margin-top:4px;">
+    <div class="section-title">Calendrier</div>
+    <div class="section-sub">4 semaines · 3 vidéos par semaine · Batch le lundi</div>
+  </div>
+
+  <!-- SEMAINE 1 -->
+  <div class="week-header">
+    <div class="week-pill">Semaine 1</div>
+    <div class="week-theme">La honte d'avoir encore besoin</div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-meta">
+      <span class="video-day">Lundi</span>
+      <span class="video-format">Stock doudous</span>
+      <span class="video-duration">10-12 sec</span>
+    </div>
+    <div class="video-text">"T'as pas besoin d'expliquer pourquoi ton doudou te manque."</div>
+    <div class="video-clip">Clip carton de doudous, texte à l'écran</div>
+    <button class="copy-btn" onclick="copyText(this, 'T\'as pas besoin d\'expliquer pourquoi ton doudou te manque.')">Copier</button>
+  </div>
+
+  <div class="video-card">
+    <div class="video-meta">
+      <span class="video-day">Mercredi</span>
+      <span class="video-format">Face caméra</span>
+      <span class="video-duration">10 sec</span>
+    </div>
+    <div class="video-text">"On t'a dit que t'étais trop grande. Ils avaient tort."</div>
+    <div class="video-clip">Toi face caméra, texte à l'écran</div>
+    <button class="copy-btn" onclick="copyText(this, 'On t\'a dit que t\'étais trop grande. Ils avaient tort.')">Copier</button>
+  </div>
+
+  <div class="video-card">
+    <div class="video-meta">
+      <span class="video-day">Vendredi</span>
+      <span class="video-format">Texte seul</span>
+      <span class="video-duration">8-10 sec</span>
+    </div>
+    <div class="video-text">"Avoir encore besoin de ton doudou à 20 ans c'est pas une régression. C'est de la lucidité."</div>
+    <div class="video-clip">Texte sur fond neutre, musique douce</div>
+    <button class="copy-btn" onclick="copyText(this, 'Avoir encore besoin de ton doudou à 20 ans c\'est pas une régression. C\'est de la lucidité.')">Copier</button>
+  </div>
+
+  <!-- SEMAINE 2 -->
+  <div class="week-header">
+    <div class="week-pill">Semaine 2</div>
+    <div class="week-theme">La mémoire affective</div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-meta">
+      <span class="video-day">Lundi</span>
+      <span class="video-format">Gros plan</span>
+      <span class="video-duration">10 sec</span>
+    </div>
+    <div class="video-text">"Ton doudou te rappelle quelqu'un."</div>
+    <div class="video-clip">Gros plan doudou abîmé, texte simple</div>
+    <button class="copy-btn" onclick="copyText(this, 'Ton doudou te rappelle quelqu\'un.')">Copier</button>
+  </div>
+
+  <div class="video-card">
+    <div class="video-meta">
+      <span class="video-day">Mercredi</span>
+      <span class="video-format">Stock doudous</span>
+      <span class="video-duration">12 sec</span>
+    </div>
+    <div class="video-text">"Certains objets portent des gens entiers."</div>
+    <div class="video-clip">Clip carton de doudous, texte à l'écran</div>
+    <button class="copy-btn" onclick="copyText(this, 'Certains objets portent des gens entiers.')">Copier</button>
+  </div>
+
+  <div class="video-card">
+    <div class="video-meta">
+      <span class="video-day">Vendredi</span>
+      <span class="video-format">Face caméra</span>
+      <span class="video-duration">10 sec</span>
+    </div>
+    <div class="video-text">"T'as pas perdu un jouet. T'as perdu un morceau de toi."</div>
+    <div class="video-clip">Toi face caméra, regard caméra direct</div>
+    <button class="copy-btn" onclick="copyText(this, 'T\'as pas perdu un jouet. T\'as perdu un morceau de toi.')">Copier</button>
+  </div>
+
+  <!-- SEMAINE 3 -->
+  <div class="week-header">
+    <div class="week-pill">Semaine 3</div>
+    <div class="week-theme">L'anxiété et les objets rassurants</div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-meta">
+      <span class="video-day">Lundi</span>
+      <span class="video-format">Stock en fond</span>
+      <span class="video-duration">12 sec</span>
+    </div>
+    <div class="video-text">"Les anxieux comprennent pourquoi un objet peut tout changer."</div>
+    <div class="video-clip">Stock doudous en fond flou, texte centré</div>
+    <button class="copy-btn" onclick="copyText(this, 'Les anxieux comprennent pourquoi un objet peut tout changer.')">Copier</button>
+  </div>
+
+  <div class="video-card">
+    <div class="video-meta">
+      <span class="video-day">Mercredi</span>
+      <span class="video-format">Face caméra</span>
+      <span class="video-duration">12 sec</span>
+    </div>
+    <div class="video-text">"Ton cerveau cherche encore ce qui le calmait. C'est pas enfantin. C'est humain."</div>
+    <div class="video-clip">Toi face caméra, ton calme et posé</div>
+    <button class="copy-btn" onclick="copyText(this, 'Ton cerveau cherche encore ce qui le calmait. C\'est pas enfantin. C\'est humain.')">Copier</button>
+  </div>
+
+  <div class="video-card">
+    <div class="video-meta">
+      <span class="video-day">Vendredi</span>
+      <span class="video-format">Gros plan</span>
+      <span class="video-duration">10 sec</span>
+    </div>
+    <div class="video-text">"Un objet qui te régule c'est pas une béquille. C'est une intelligence."</div>
+    <div class="video-clip">Gros plan doudou tenu dans les mains</div>
+    <button class="copy-btn" onclick="copyText(this, 'Un objet qui te régule c\'est pas une béquille. C\'est une intelligence.')">Copier</button>
+  </div>
+
+  <!-- SEMAINE 4 -->
+  <div class="week-header">
+    <div class="week-pill">Semaine 4</div>
+    <div class="week-theme">Le lâcher prise impossible</div>
+  </div>
+
+  <div class="video-card">
+    <div class="video-meta">
+      <span class="video-day">Lundi</span>
+      <span class="video-format">Stock doudous</span>
+      <span class="video-duration">10 sec</span>
+    </div>
+    <div class="video-text">"Tu peux pas jeter ce doudou et tu sais pas pourquoi."</div>
+    <div class="video-clip">Clip toi qui tiens un doudou, regard vers lui</div>
+    <button class="copy-btn" onclick="copyText(this, 'Tu peux pas jeter ce doudou et tu sais pas pourquoi.')">Copier</button>
+  </div>
+
+  <div class="video-card">
+    <div class="video-meta">
+      <span class="video-day">Mercredi</span>
+      <span class="video-format">Stock doudous</span>
+      <span class="video-duration">12 sec</span>
+    </div>
+    <div class="video-text">"Certaines choses ont pas le droit de disparaître."</div>
+    <div class="video-clip">Stock doudous, mouvement lent de caméra</div>
+    <button class="copy-btn" onclick="copyText(this, 'Certaines choses ont pas le droit de disparaître.')">Copier</button>
+  </div>
+
+  <div class="video-card">
+    <div class="video-meta">
+      <span class="video-day">Vendredi</span>
+      <span class="video-format">Face caméra</span>
+      <span class="video-duration">10 sec</span>
+    </div>
+    <div class="video-text">"T'as essayé de l'oublier. Il est encore là dans ta tête."</div>
+    <div class="video-clip">Toi face caméra, pause avant la fin</div>
+    <button class="copy-btn" onclick="copyText(this, 'T\'as essayé de l\'oublier. Il est encore là dans ta tête.')">Copier</button>
+  </div>
+
+</div>
+
+<!-- RÉPONSES -->
+<div class="section" id="reponses">
+
+  <div style="margin-bottom:4px; margin-top:4px;">
+    <div class="section-title">Réponses</div>
+    <div class="section-sub">Copie et colle directement dans TikTok</div>
+  </div>
+
+  <div class="reponse-category">
+    <div class="category-title">💬 "T'as mon doudou ?"</div>
+
+    <div class="reponse-card">
+      <div class="reponse-trigger">Quand quelqu'un décrit son doudou en commentaire</div>
+      <div class="reponse-text">Ah je regarde ça pour toi 🥹 Envoie-moi une description plus précise en DM ou passe par le lien en bio, j'ai un formulaire de recherche !</div>
+      <button class="copy-btn" onclick="copyText(this, 'Ah je regarde ça pour toi 🥹 Envoie-moi une description plus précise en DM ou passe par le lien en bio, j\'ai un formulaire de recherche !')">Copier</button>
+    </div>
+
+    <div class="reponse-card">
+      <div class="reponse-trigger">Quand la description est vague</div>
+      <div class="reponse-text">Je fais des recherches tous les jours 🐻 Pour que je puisse vraiment chercher le tien, remplis le formulaire via le lien en bio — plus t'es précis(e), plus j'ai de chances de le trouver !</div>
+      <button class="copy-btn" onclick="copyText(this, 'Je fais des recherches tous les jours 🐻 Pour que je puisse vraiment chercher le tien, remplis le formulaire via le lien en bio — plus t\'es précis(e), plus j\'ai de chances de le trouver !')">Copier</button>
+    </div>
+  </div>
+
+  <div class="reponse-category">
+    <div class="category-title">🙋 "Comment tu fais pour retrouver ?"</div>
+
+    <div class="reponse-card">
+      <div class="reponse-trigger">Question générale sur le service</div>
+      <div class="reponse-text">Je cherche sur toutes les plateformes de seconde main : Vinted, LeBonCoin, Beebs… et j'ai mes petits réseaux 😄 Si tu veux que je cherche le tien, c'est par le lien en bio !</div>
+      <button class="copy-btn" onclick="copyText(this, 'Je cherche sur toutes les plateformes de seconde main : Vinted, LeBonCoin, Beebs… et j\'ai mes petits réseaux 😄 Si tu veux que je cherche le tien, c\'est par le lien en bio !')">Copier</button>
+    </div>
+  </div>
+
+  <div class="reponse-category">
+    <div class="category-title">💰 "C'est payant ?"</div>
+
+    <div class="reponse-card">
+      <div class="reponse-trigger">Question sur le prix</div>
+      <div class="reponse-text">Oui le service de recherche est payant 🙂 Tous les détails sont sur le lien en bio — et le doudou que je trouve, tu l'achètes directement au vendeur, je sers juste d'intermédiaire pour la recherche !</div>
+      <button class="copy-btn" onclick="copyText(this, 'Oui le service de recherche est payant 🙂 Tous les détails sont sur le lien en bio — et le doudou que je trouve, tu l\'achètes directement au vendeur, je sers juste d\'intermédiaire pour la recherche !')">Copier</button>
+    </div>
+  </div>
+
+  <div class="reponse-category">
+    <div class="category-title">🥺 Partage émotionnel</div>
+
+    <div class="reponse-card">
+      <div class="reponse-trigger">Quelqu'un raconte son histoire, son doudou perdu</div>
+      <div class="reponse-text">Ça me touche vraiment 🥹 Ces attachements-là c'est tellement légitime. Si un jour tu veux qu'on cherche ensemble, je suis là — lien en bio 🐻</div>
+      <button class="copy-btn" onclick="copyText(this, 'Ça me touche vraiment 🥹 Ces attachements-là c\'est tellement légitime. Si un jour tu veux qu\'on cherche ensemble, je suis là — lien en bio 🐻')">Copier</button>
+    </div>
+
+    <div class="reponse-card">
+      <div class="reponse-trigger">Quelqu'un dit que son doudou a été jeté par ses parents</div>
+      <div class="reponse-text">Oh non 😢 C'est tellement douloureux ça. Le jumeau existe peut-être encore quelque part — si tu te souviens à quoi il ressemblait, on peut chercher 🐻</div>
+      <button class="copy-btn" onclick="copyText(this, 'Oh non 😢 C\'est tellement douloureux ça. Le jumeau existe peut-être encore quelque part — si tu te souviens à quoi il ressemblait, on peut chercher 🐻')">Copier</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- IDENTITÉ -->
+<div class="section" id="identite">
+
+  <div style="margin-bottom:4px; margin-top:4px;">
+    <div class="section-title">Ton identité</div>
+    <div class="section-sub">Ce qui ne change pas, quoi qu'il arrive</div>
+  </div>
+
+  <div class="identity-block">
+    <div class="identity-title">Ta phrase centrale</div>
+    <div style="font-family:'DM Serif Display',serif; font-size:18px; color:var(--rose-deep); font-style:italic; line-height:1.4; padding: 4px 0 8px;">
+      "Je suis la personne qui donne aux adultes la permission d'avoir encore besoin de leur doudou."
+    </div>
+    <div style="font-size:12px; color:var(--text-soft); line-height:1.5;">Tout ton contenu découle de là. Chaque vidéo est une variation de cette idée.</div>
+  </div>
+
+  <div class="identity-block">
+    <div class="identity-title">Les règles fixes</div>
+
+    <div class="rule-item">
+      <span class="rule-icon">⏱️</span>
+      <span>Jamais en dessous de <strong>10 secondes</strong></span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-icon">💬</span>
+      <span>Toujours une <strong>affirmation</strong>, jamais une question en accroche</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-icon">🚫</span>
+      <span><strong>Zéro mention du service</strong> en vidéo ce mois-ci</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-icon">💌</span>
+      <span>Réponds à <strong>chaque commentaire</strong> qui demande le service — ce sont des clients directs</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-icon">📅</span>
+      <span><strong>1 après-midi de batch</strong> par semaine, 3 vidéos planifiées</span>
+    </div>
+  </div>
+
+  <div class="identity-block">
+    <div class="identity-title">Ce qui cartonne chez toi</div>
+
+    <div class="rule-item">
+      <span class="rule-no">✓</span>
+      <span>Affirmation universelle sur l'attachement émotionnel</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-no">✓</span>
+      <span>Toi ou tes doudous — pas d'explication du service</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-no">✓</span>
+      <span>Peur douce + nostalgie + silence à la fin</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-no">✗</span>
+      <span>Contenu "expert" ou "mécanique de recherche" — ça parle aux convaincus, pas aux nouveaux</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-no">✗</span>
+      <span>Vidéos sous 10 secondes</span>
+    </div>
+  </div>
+
+  <div class="identity-block">
+    <div class="identity-title">Ton tutoiement de marque</div>
+    <div style="font-size:13px; color:var(--text); line-height:1.6;">
+      Chaleureux, direct, jamais condescendant. Tu valides ce que les gens ressentent sans leur expliquer ce qu'ils devraient ressentir. Pas de "je comprends ta douleur" — juste des affirmations qui font écho.
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function copyText(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.textContent;
+      btn.textContent = '✓ Copié !';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
