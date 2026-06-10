@@ -222,6 +222,21 @@
     font-size: 13px;
   }
 
+  .video-desc {
+    font-size: 12px;
+    color: var(--text);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  .video-hashtags {
+    font-size: 11px;
+    color: var(--rose-deep);
+    margin-top: 4px;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
   /* COPY BUTTON */
   .copy-btn {
     width: 100%;
@@ -530,7 +545,9 @@
     </div>
     <div class="video-text">"Imagine personne ne cherche son doudou perdu en 2026 🧠"</div>
     <div class="video-clip">Toi devant l'ordi, demandes visibles à l'écran</div>
-    <button class="copy-btn" onclick="copyText(this, 'Imagine personne ne cherche son doudou perdu en 2026 🧠')">Copier</button>
+    <div class="video-desc">Je reçois des demandes tous les jours. Ce métier existe vraiment.</div>
+    <div class="video-hashtags">#doudou #happydoudou #doudouperdu #enfancenostalgique #retrouvailles</div>
+    <button class="copy-btn" onclick="copyText(this, 'Imagine personne ne cherche son doudou perdu en 2026 🧠\n\nJe reçois des demandes tous les jours. Ce métier existe vraiment.\n\n#doudou #happydoudou #doudouperdu #enfancenostalgique #retrouvailles')">Copier tout</button>
   </div>
 
   <div class="video-card">
@@ -541,7 +558,9 @@
     </div>
     <div class="video-text">"Ce que ton doudou dit de toi"</div>
     <div class="video-clip">Slide 1 : T'as pas honte d'être anxieux · Slide 2 : T'as honte de ce qui te calme · Slide 3 : Ton cerveau cherche ce qui le rassurait · Slide 4 : C'est pas enfantin · Slide 5 : C'est de la mémoire</div>
-    <button class="copy-btn" onclick="copyText(this, 'Ce que ton doudou dit de toi\n\nT\'as pas honte d\'être anxieux\nT\'as honte de ce qui te calme\nTon cerveau cherche ce qui le rassurait\nC\'est pas enfantin\nC\'est de la mémoire')">Copier slides</button>
+    <div class="video-desc">Ce que personne ne te dira jamais sur ton attachement.</div>
+    <div class="video-hashtags">#doudou #happydoudou #anxiété #objetdetransition #enfance</div>
+    <button class="copy-btn" onclick="copyText(this, 'Ce que ton doudou dit de toi\n\nT\'as pas honte d\'être anxieux\nT\'as honte de ce qui te calme\nTon cerveau cherche ce qui le rassurait\nC\'est pas enfantin\nC\'est de la mémoire\n\nCe que personne ne te dira jamais sur ton attachement.\n\n#doudou #happydoudou #anxiété #objetdetransition #enfance')">Copier tout</button>
   </div>
 
   <div class="video-card">
@@ -552,7 +571,9 @@
     </div>
     <div class="video-text">"Les doudous qu'on me demande de retrouver le plus souvent… 👀"</div>
     <div class="video-clip">Gros plan stock doudous années 90, texte à l'écran</div>
-    <button class="copy-btn" onclick="copyText(this, 'Les doudous qu\'on me demande de retrouver le plus souvent… 👀')">Copier</button>
+    <div class="video-desc">Certains reviennent encore et encore dans mes recherches.</div>
+    <div class="video-hashtags">#doudou #happydoudou #doudouperdu #annee90 #peluche</div>
+    <button class="copy-btn" onclick="copyText(this, 'Les doudous qu\'on me demande de retrouver le plus souvent… 👀\n\nCertains reviennent encore et encore dans mes recherches.\n\n#doudou #happydoudou #doudouperdu #annee90 #peluche')">Copier tout</button>
   </div>
 
   <!-- SEMAINE 2 -->
@@ -569,7 +590,9 @@
     </div>
     <div class="video-text">"Tu le ranges avant que quelqu'un arrive. Je te juge pas."</div>
     <div class="video-clip">Toi face caméra, ton doux, regard direct</div>
-    <button class="copy-btn" onclick="copyText(this, 'Tu le ranges avant que quelqu\'un arrive. Je te juge pas.')">Copier</button>
+    <div class="video-desc">T'as pas à t'en excuser.</div>
+    <div class="video-hashtags">#doudou #happydoudou #enfancenostalgique #anxiété #objetdetransition</div>
+    <button class="copy-btn" onclick="copyText(this, 'Tu le ranges avant que quelqu\'un arrive. Je te juge pas.\n\nT\'as pas à t\'en excuser.\n\n#doudou #happydoudou #enfancenostalgique #anxiété #objetdetransition')">Copier tout</button>
   </div>
 
   <div class="video-card">
@@ -580,7 +603,9 @@
     </div>
     <div class="video-text">"Celui-là ça fait 3 ans que je le cherche."</div>
     <div class="video-clip">Gros plan doudou abîmé ou rare, texte simple</div>
-    <button class="copy-btn" onclick="copyText(this, 'Celui-là ça fait 3 ans que je le cherche.')">Copier</button>
+    <div class="video-desc">Certaines recherches prennent des années.</div>
+    <div class="video-hashtags">#doudou #happydoudou #doudouperdu #peluche #introuvable</div>
+    <button class="copy-btn" onclick="copyText(this, 'Celui-là ça fait 3 ans que je le cherche.\n\nCertaines recherches prennent des années.\n\n#doudou #happydoudou #doudouperdu #peluche #introuvable')">Copier tout</button>
   </div>
 
   <div class="video-card">
@@ -591,7 +616,9 @@
     </div>
     <div class="video-text">"Ce matin j'ai reçu 6 demandes pour le même doudou introuvable 🤯"</div>
     <div class="video-clip">Toi devant l'ordi, demandes visibles, réaction naturelle</div>
-    <button class="copy-btn" onclick="copyText(this, 'Ce matin j\'ai reçu 6 demandes pour le même doudou introuvable 🤯')">Copier</button>
+    <div class="video-desc">Ce doudou-là, je l'ai cherché pour 6 personnes différentes.</div>
+    <div class="video-hashtags">#doudou #happydoudou #doudouperdu #retrouvailles #annee90</div>
+    <button class="copy-btn" onclick="copyText(this, 'Ce matin j\'ai reçu 6 demandes pour le même doudou introuvable 🤯\n\nCe doudou-là, je l\'ai cherché pour 6 personnes différentes.\n\n#doudou #happydoudou #doudouperdu #retrouvailles #annee90')">Copier tout</button>
   </div>
 
   <!-- SEMAINE 3 -->
@@ -608,7 +635,9 @@
     </div>
     <div class="video-text">"Les doudous les plus introuvables que j'ai retrouvés"</div>
     <div class="video-clip">Slide 1 : Le lapin Doudou et Compagnie rose années 90 · Slide 2 : L'ours Tartine et Chocolat · Slide 3 : Le chien Snoopy Ajena · Slide 4 : Et celui-là… 3 mois de recherche · Slide 5 : Il existe encore quelque part 👀</div>
-    <button class="copy-btn" onclick="copyText(this, 'Les doudous les plus introuvables que j\'ai retrouvés\n\nLe lapin Doudou et Compagnie rose années 90\nL\'ours Tartine et Chocolat\nLe chien Snoopy Ajena\nEt celui-là… 3 mois de recherche\nIl existe encore quelque part 👀')">Copier slides</button>
+    <div class="video-desc">Des mois de recherche, mais ils existent encore.</div>
+    <div class="video-hashtags">#doudou #happydoudou #doudouperdu #peluche #annee90 #enfancenostalgique</div>
+    <button class="copy-btn" onclick="copyText(this, 'Les doudous les plus introuvables que j\'ai retrouvés\n\nDes mois de recherche, mais ils existent encore.\n\n#doudou #happydoudou #doudouperdu #peluche #annee90 #enfancenostalgique')">Copier tout</button>
   </div>
 
   <div class="video-card">
@@ -619,7 +648,9 @@
     </div>
     <div class="video-text">"Certains souvenirs vivent dans les objets, pas dans ta tête."</div>
     <div class="video-clip">Stock doudous en fond, texte à l'écran, musique douce</div>
-    <button class="copy-btn" onclick="copyText(this, 'Certains souvenirs vivent dans les objets, pas dans ta tête.')">Copier</button>
+    <div class="video-desc">Certains objets gardent les gens en vie.</div>
+    <div class="video-hashtags">#doudou #happydoudou #memoireaffective #enfance #nostalgie</div>
+    <button class="copy-btn" onclick="copyText(this, 'Certains souvenirs vivent dans les objets, pas dans ta tête.\n\nCertains objets gardent les gens en vie.\n\n#doudou #happydoudou #memoireaffective #enfance #nostalgie')">Copier tout</button>
   </div>
 
   <div class="video-card">
@@ -630,7 +661,9 @@
     </div>
     <div class="video-text">"On m'a dit que c'était pas un vrai métier. J'ai 400 recherches derrière moi."</div>
     <div class="video-clip">Toi face caméra, ton calme et affirmé</div>
-    <button class="copy-btn" onclick="copyText(this, 'On m\'a dit que c\'était pas un vrai métier. J\'ai 400 recherches derrière moi.')">Copier</button>
+    <div class="video-desc">400 recherches. Ce métier n'existait pas avant moi.</div>
+    <div class="video-hashtags">#doudou #happydoudou #doudouperdu #retrouvailles #entrepreneur</div>
+    <button class="copy-btn" onclick="copyText(this, 'On m\'a dit que c\'était pas un vrai métier. J\'ai 400 recherches derrière moi.\n\n400 recherches. Ce métier n\'existait pas avant moi.\n\n#doudou #happydoudou #doudouperdu #retrouvailles #entrepreneur')">Copier tout</button>
   </div>
 
   <!-- SEMAINE 4 -->
@@ -647,7 +680,9 @@
     </div>
     <div class="video-text">"Ils ont jeté le tien sans te demander. Et t'as rien dit."</div>
     <div class="video-clip">Toi face caméra, pause longue avant la fin</div>
-    <button class="copy-btn" onclick="copyText(this, 'Ils ont jeté le tien sans te demander. Et t\'as rien dit.')">Copier</button>
+    <div class="video-desc">T'avais le droit de te défendre. T'avais le droit de pleurer.</div>
+    <div class="video-hashtags">#doudou #happydoudou #enfancenostalgique #objetdetransition #anxiété</div>
+    <button class="copy-btn" onclick="copyText(this, 'Ils ont jeté le tien sans te demander. Et t\'as rien dit.\n\nT\'avais le droit de te défendre. T\'avais le droit de pleurer.\n\n#doudou #happydoudou #enfancenostalgique #objetdetransition #anxiété')">Copier tout</button>
   </div>
 
   <div class="video-card">
@@ -658,7 +693,9 @@
     </div>
     <div class="video-text">"Cette semaine j'ai cherché ces doudous pour vous 🧸"</div>
     <div class="video-clip">Captures anonymisées de demandes reçues, descriptions des doudous recherchés</div>
-    <button class="copy-btn" onclick="copyText(this, 'Cette semaine j\'ai cherché ces doudous pour vous 🧸')">Copier</button>
+    <div class="video-desc">Une semaine de recherches, des histoires vraies.</div>
+    <div class="video-hashtags">#doudou #happydoudou #doudouperdu #retrouvailles #peluche</div>
+    <button class="copy-btn" onclick="copyText(this, 'Cette semaine j\'ai cherché ces doudous pour vous 🧸\n\nUne semaine de recherches, des histoires vraies.\n\n#doudou #happydoudou #doudouperdu #retrouvailles #peluche')">Copier tout</button>
   </div>
 
   <div class="video-card">
@@ -669,7 +706,9 @@
     </div>
     <div class="video-text">"Et si ton doudou était là ?"</div>
     <div class="video-clip">Travelling lent sur le stock de doudous, lumière douce</div>
-    <button class="copy-btn" onclick="copyText(this, 'Et si ton doudou était là ?')">Copier</button>
+    <div class="video-desc">Il est peut-être là, quelque part.</div>
+    <div class="video-hashtags">#doudou #happydoudou #doudouperdu #annee90 #peluche</div>
+    <button class="copy-btn" onclick="copyText(this, 'Et si ton doudou était là ?\n\nIl est peut-être là, quelque part.\n\n#doudou #happydoudou #doudouperdu #annee90 #peluche')">Copier tout</button>
   </div>
 
 </div>
